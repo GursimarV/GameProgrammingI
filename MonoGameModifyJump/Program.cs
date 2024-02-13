@@ -2,8 +2,6 @@
 
 namespace MonoGameModifyJump
 {
-    // Credit to Jeff Meyers
-    // From GameProgrammingI github, SimpleMovementJump
     public static class Program
     {
         [STAThread]

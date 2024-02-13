@@ -4,9 +4,6 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-// Credit to Jeff Meyers
-// From GameProgrammingI github, SimpleMovementJump
-
 namespace MonoGameModifyJump
 {
     public class Sprite

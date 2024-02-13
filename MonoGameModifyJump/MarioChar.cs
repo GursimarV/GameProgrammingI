@@ -8,8 +8,7 @@ using SharpDX.Direct3D9;
 
 namespace MonoGameModifyJump
 {
-    // Credit to Jeff Meyers
-    // From GameProgrammingI github, SimpleMovementJump
+
     public class MarioChar : Sprite
     {
         bool isOnGround;                //Hack to stop falling at a certian point 

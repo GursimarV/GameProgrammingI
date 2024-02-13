@@ -8,8 +8,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MonoGameModifyJump
 {
-    // Credit to Jeff Meyers
-    // From GameProgrammingI github, SimpleMovementJump
     class KeyboardHandler
     {
 
