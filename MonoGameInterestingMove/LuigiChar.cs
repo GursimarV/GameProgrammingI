@@ -1,9 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -59,11 +59,11 @@ namespace MonoGameInterestingMove
             //Speed for next frame
             if (Keyboard.GetState().GetPressedKeys().Length > 0)
             {
-                this.Speed = 200;
+                this.SpeedMax = 200;
             }
             else
             {
-                this.Speed = 0;
+                this.SpeedMax = 0;
             }
 
         }

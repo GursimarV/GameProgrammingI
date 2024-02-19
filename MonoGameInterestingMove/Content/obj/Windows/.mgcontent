@@ -4,10 +4,12 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/MonoGameInterestingMove/Content/Font.spritefont</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/MonoGameInterestingMove/Content/Luigi.png</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/MonoGameInterestingMove/Content/Star.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
   </DestFiles>

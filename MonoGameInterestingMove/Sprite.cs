@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
@@ -26,22 +25,7 @@ namespace MonoGameInterestingMove
 
             this.SpeedMax = 100;
         }
-
-        public virtual void LoadContent()
-        {
-            if (string.IsNullOrEmpty(TextureName))
-                TextureName = "pacmanSingle";       
-            Texture = game.Content.Load<Texture2D>(TextureName);
-            
-            this.Loc = new Vector2(game.GraphicsDevice.Viewport.Width / 2,
-                game.GraphicsDevice.Viewport.Height / 2);
-            
-            this.Dir = new Vector2(0, 0);
-
-            this.Origin = new Vector2(this.Texture.Width / 2, this.Texture.Height / 2);
-
-        }
-
+        
         float time;
 
         public virtual void Update(GameTime gameTime)
@@ -68,6 +52,21 @@ namespace MonoGameInterestingMove
                 this.Origin,   
                 SpriteEffects.None,
                 0);
+
+        }
+
+        public virtual void LoadContent()
+        {
+            if (string.IsNullOrEmpty(TextureName))
+                TextureName = "pacmanSingle";
+            Texture = game.Content.Load<Texture2D>(TextureName);
+
+            this.Loc = new Vector2(game.GraphicsDevice.Viewport.Width / 2,
+                game.GraphicsDevice.Viewport.Height / 2);
+
+            this.Dir = new Vector2(0, 0);
+
+            this.Origin = new Vector2(this.Texture.Width / 2, this.Texture.Height / 2);
 
         }
     }
