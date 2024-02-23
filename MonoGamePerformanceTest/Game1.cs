@@ -9,11 +9,20 @@ namespace MonoGamePerformanceTest
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        Luigi luigi;
+
+        FramesTest fps;
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            luigi = new Luigi(this);
+
+            fps = new FramesTest(this);
+            this.Components.Add(fps);
         }
 
         protected override void Initialize()
@@ -28,6 +37,15 @@ namespace MonoGamePerformanceTest
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+        }
+
+        /// <summary>
+        /// UnloadContent will be called once per game and is the place to unload
+        /// game-specific content.
+        /// </summary>
+        protected override void UnloadContent()
+        {
+
         }
 
         protected override void Update(GameTime gameTime)
