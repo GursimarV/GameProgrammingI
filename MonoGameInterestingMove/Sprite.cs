@@ -58,7 +58,7 @@ namespace MonoGameInterestingMove
         public virtual void LoadContent()
         {
             if (string.IsNullOrEmpty(TextureName))
-                TextureName = "pacmanSingle";
+                TextureName = "Luigi";
             Texture = game.Content.Load<Texture2D>(TextureName);
 
             this.Loc = new Vector2(game.GraphicsDevice.Viewport.Width / 2,

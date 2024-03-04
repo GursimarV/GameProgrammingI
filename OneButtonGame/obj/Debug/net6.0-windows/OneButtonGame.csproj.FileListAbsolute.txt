@@ -1,0 +1,5 @@
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\OneButtonGame\obj\Debug\net6.0-windows\OneButtonGame.csproj.AssemblyReference.cache
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\OneButtonGame\obj\Debug\net6.0-windows\OneButtonGame.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\OneButtonGame\obj\Debug\net6.0-windows\OneButtonGame.AssemblyInfoInputs.cache
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\OneButtonGame\obj\Debug\net6.0-windows\OneButtonGame.AssemblyInfo.cs
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\OneButtonGame\obj\Debug\net6.0-windows\OneButtonGame.csproj.CoreCompileInputs.cache
