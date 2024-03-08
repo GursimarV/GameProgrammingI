@@ -1,77 +1,48 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Input;
 
 namespace OneButtonGame
 {
     internal class Timer : DrawableGameComponent
     {
-        private Vector2 _position;
-        private SpriteFont _font;
-        private Vector2 _textPosition;
-        private string _text;
-        private float _timeLength;
-        private float _timeLeft;
-        private bool _active;
-        public bool Repeat { get; set; }
+        SpriteBatch spriteBatch;
+        SpriteFont font;
 
-        public Timer(SpriteFont font, Vector2 pos, float len) : base(game)
+        public float timerTime;
+        float timerSpan;
+
+        public Timer(Game game) : base(game)
         {
-            _font = font;
-            _position = pos;
-            _textPosition = new(pos.X + 32, pos.Y + 2);
-            _timeLength = len;
-            _timeLeft = len;
+            timerSpan = timerTime = 10000;
         }
 
-        private void FormatText()
+        protected override void LoadContent()
         {
-            _text = TimeSpan.FromSeconds(_timeLeft).ToString(@"mm\:ss\.ff");
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            font = this.Game.Content.Load<SpriteFont>("Font");
+
+            base.LoadContent();
         }
 
-        public void StartStop()
+        public override void Update(GameTime gameTime)
         {
-            _active = !_active;
-        }
-
-        public void Reset()
-        {
-            _timeLeft = _timeLength;
-            FormatText();
-        }
-
-        public event EventHandler OnTimer;
-
-        public void Update()
-        {
-            if (!_active) return;
-            _timeLeft -= OneButtonController.Time;
-
-            if (_timeLeft <= 0)
+            if (timerTime >= 0) 
             {
-                OnTimer?.Invoke(this, EventArgs.Empty);
-
-                if (Repeat)
-                {
-                    Reset();
-                }
-                else
-                {
-                    StartStop();
-                    _timeLeft = 0f;
-                }
+                timerTime -= gameTime.ElapsedGameTime.Milliseconds;
             }
-
-            FormatText();
+            base.Update(gameTime);
         }
 
-        public void Draw()
+        public override void Draw(GameTime gameTime)
         {
-            OneButtonController.spriteBatch.DrawString(_font, _text, _position, Color.Black);
+            spriteBatch.Begin();
+            spriteBatch.DrawString(font, "Timer:", new Vector2(150, 50), Color.Blue);
+            spriteBatch.DrawString(font, timerTime.ToString(), new Vector2(200, 50), Color.Blue);
+            spriteBatch.End();
+
+            base.Draw(gameTime);
         }
     }
 }

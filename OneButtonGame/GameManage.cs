@@ -8,29 +8,30 @@ using System.Threading.Tasks;
 
 namespace OneButtonGame
 {
-    internal class GameManage
+    internal class GameManage : DrawableGameComponent
     {
-        private PicManage _pic = new();
-        private Timer _timer;
+        private PicManage _pic;
         private SpriteFont _font;
-        private Vector2 _counterPosition = new(300, 200);
-        private int _counter;
+        OneButtonController obc;
 
-        public GameManage()
+        public GameManage(Game game, OneButtonController obc) : base(game)
         {
-            _font = OneButtonController.Content.Load<SpriteFont>("Font");
+            this.obc = obc;
+            this._pic = new PicManage(game);
 
-            _timer = new(_font, new(300, 300), 5f);
-            _timer.OnTimer += IncreaseCounter;
-            _timer.StartStop();
-            _timer.Repeat = true;
+            this.Game.Components.Add(_pic);
 
-            _pic.AddPunch(new Vector2(100, 100));
+            //_timer = new(_font, new(300, 300), 5f);
+            //_timer.OnTimer += IncreaseCounter;
+            //_timer.StartStop();
+            //_timer.Repeat = true;
         }
 
-        public void IncreaseCounter(object sender, EventArgs e)
+        protected override void LoadContent()
         {
-            _counter++;
+            _font = this.Game.Content.Load<SpriteFont>("Font");
+            _pic.Initialize();
+            base.LoadContent();
         }
 
         public void Action(object sender, EventArgs e)
@@ -38,18 +39,16 @@ namespace OneButtonGame
             _pic.Counter++;
         }
 
-        
-        public void Update()
+        public override void Update(GameTime gameTime)
         {
             _pic.Update();
-            _timer.Update();
+            base.Update(gameTime);
         }
 
         public void Draw()
         {
             _pic.Draw();
-            OneButtonController.spriteBatch.DrawString(_font, _counter.ToString(), _counterPosition, Color.Black);
-            _timer.Draw();
+            //obc.spriteBatch.DrawString(_font, _counter.ToString(), _counterPosition, Color.Black);
         }
     }
 }

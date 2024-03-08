@@ -10,24 +10,31 @@ namespace OneButtonGame
 {
     internal class PicManage : DrawableGameComponent
     {
-        private Texture2D PunchTexture { get; }
-        private SpriteFont Font { get; }
+        private Texture2D PunchTexture { get; set; }
+        private SpriteFont Font { get; set; }
         private List<Punch> _punch = new();
-        public int counter {  get; set; }
+        public int Counter { get; set; }
 
-        public PicManage() 
+        public PicManage(Game game) : base(game)
         {
-            PunchTexture = OneButtonController.Content.Load<Texture2D>("Punch");
-            Font = OneButtonController.Content.Load<SpriteFont>("Font");
+           
         }
 
-        public Punch AddPunch(Vector2 position)
+        protected override void LoadContent()
         {
-            Punch p = new(PunchTexture, position);
-            _punch.Add(p);
+            PunchTexture = this.Game.Content.Load<Texture2D>("Punch");
+            Font = this.Game.Content.Load<SpriteFont>("Font");
 
-            return p;
+            base.LoadContent();
         }
+
+        //public Punch AddPunch(Vector2 texture position)
+        //{
+        //    //Punch p = new(PunchTexture, texture, position);
+        //    //_punch.Add(p);
+
+        //    //return p;
+        //}
 
         public void Update()
         {
@@ -43,7 +50,7 @@ namespace OneButtonGame
             {
                 item.Draw();
             }
-            OneButtonController.spriteBatch.DrawString(Font, counter.ToString(), new(10,10), Color.Black);
+            //obc.spriteBatch.DrawString(Font, Counter.ToString(), new(10,10), Color.Black);
         }
     }
 }

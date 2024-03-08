@@ -4,12 +4,14 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
+    <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/OneButtonGame/Content/BoxTrainingMusic.mp3</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/OneButtonGame/Content/Font.spritefont</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/OneButtonGame/Content/Matt.png</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/OneButtonGame/Content/Punch.png</File>
     <File>C:/Users/gursi/OneDrive/Desktop/Real Class Work/Game Programming 1/GameProgrammingI/OneButtonGame/Content/WiiBoxingBag.png</File>
   </SourceFiles>
   <DestFiles>
+    <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />
     <File xsi:nil="true" />

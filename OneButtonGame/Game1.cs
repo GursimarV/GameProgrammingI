@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace OneButtonGame
@@ -18,18 +19,36 @@ namespace OneButtonGame
 
         private SpriteFont _font;
 
+        OneButtonController obc;
+
+        MouseSprite mouseSprite;
+
+        Timer timer;
+
+        private string _winText = "";
+
+        private string _lostText = ""; 
+
         public Game1()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+           obc = new OneButtonController(this);
+            this.Components.Add(obc);
+           _gm = new GameManage(this, obc);
+            this.Components.Add(_gm);
+           mouseSprite = new MouseSprite(this);
+            this.Components.Add(mouseSprite);
+           timer = new Timer(this);
+            this.Components.Add(timer);
         }
 
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            OneButtonController.Content = Content;
-            _gm = new();
+            obc.Content = Content;
 
             _font = Content.Load<SpriteFont>("Font");
             base.Initialize();
@@ -42,7 +61,7 @@ namespace OneButtonGame
             // TODO: use this.Content to load your game content here
             _matt = Content.Load<Texture2D>("Matt");
             _boxingbag = Content.Load<Texture2D>("WiiBoxingBag");
-            OneButtonController.spriteBatch = _spriteBatch;
+            obc.spriteBatch = _spriteBatch;
             base.LoadContent();
         }
 
@@ -53,10 +72,22 @@ namespace OneButtonGame
                 Exit();
             }
             // TODO: Add your update logic here
+            //When time reaches 0, if you score 50 points or above, you win
+            if(timer.timerTime <= 0)
+            {
+                if (mouseSprite.score >= 50)
+                {
+                    _winText = "Congrats You Win!!!";
+                }
 
-            OneButtonController.Update();
-            OneButtonController.Update(gameTime);
-            _gm.Update();
+                //if you score less than 50 points, you lose
+                else if (mouseSprite.score <= 50)
+                {
+                    _lostText = "Too Bad, Try Again!!!";
+                }
+
+                //Exit();
+            }
 
             base.Update(gameTime);
         }
@@ -70,8 +101,21 @@ namespace OneButtonGame
 
             _gm.Draw();
 
-            _spriteBatch.Draw(_matt, new Vector2(250, 250), Color.White);
-            _spriteBatch.Draw(_boxingbag, new Vector2(500,500), Color.White);
+            _spriteBatch.Draw(_matt, new Rectangle(25, 150, 256, 256), Color.White);
+            _spriteBatch.Draw(_boxingbag, new Rectangle(475, 150, 256, 256), Color.White);
+
+            //Reads the text from above when timer reaches 0 and the player scores 50 or more points
+            if (timer.timerTime <= 0 && mouseSprite.score >= 50)
+            {
+                _spriteBatch.DrawString(_font, _winText, new Vector2(300, 100), Color.Black);
+                _spriteBatch.DrawString(_font, "Press Escape to exit!", new Vector2(300, 125), Color.Red);
+            }
+            //Reads the text from above when timer reaches 0 and the player scores less than 50 points
+            else if (timer.timerTime <= 0 && mouseSprite.score <= 50)
+            {
+                _spriteBatch.DrawString(_font, _lostText, new Vector2(300, 100), Color.Black);
+                _spriteBatch.DrawString(_font, "Press Escape to exit!", new Vector2(300, 125), Color.Red);
+            }
 
             _spriteBatch.End();
             base.Draw(gameTime);
