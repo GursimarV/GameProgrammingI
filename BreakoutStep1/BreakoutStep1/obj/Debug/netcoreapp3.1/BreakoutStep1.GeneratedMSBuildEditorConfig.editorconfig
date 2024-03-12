@@ -1,0 +1,9 @@
+is_global = true
+build_property.ApplicationManifest = app.manifest
+build_property.StartupObject = 
+build_property.ApplicationDefaultFont = 
+build_property.ApplicationHighDpiMode = 
+build_property.ApplicationUseCompatibleTextRendering = 
+build_property.ApplicationVisualStyles = 
+build_property.RootNamespace = BreakoutStep1
+build_property.ProjectDir = C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\BreakoutStep1\

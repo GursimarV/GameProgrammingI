@@ -1,0 +1,12 @@
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\bin\Debug\netcoreapp3.1\Content\Arial.xnb
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\bin\Debug\netcoreapp3.1\Content\SpriteMarker.xnb
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\bin\Debug\netcoreapp3.1\MonoGameLibrary.deps.json
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\bin\Debug\netcoreapp3.1\MonoGameLibrary.dll
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\bin\Debug\netcoreapp3.1\MonoGameLibrary.pdb
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.csproj.AssemblyReference.cache
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.AssemblyInfoInputs.cache
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.AssemblyInfo.cs
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.csproj.CoreCompileInputs.cache
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.dll
+C:\Users\gursi\OneDrive\Desktop\Real Class Work\Game Programming 1\GameProgrammingI\BreakoutStep1\MonoGameLibrary\obj\Debug\netcoreapp3.1\MonoGameLibrary.pdb
