@@ -27,8 +27,6 @@ namespace BreakoutStep1
             this.block = new Block();
             NormalTextureName = "block_blue";
             HitTextureName = "block_bubble";
-
-
         }
 
         protected virtual void UpdateBlockTexture()
@@ -70,7 +68,7 @@ namespace BreakoutStep1
             UpdateBlockTexture();
         }
 
-        public void Hit()
+        public void HitByBall(Ball ball)
         {
             this.block.Hit();
         }

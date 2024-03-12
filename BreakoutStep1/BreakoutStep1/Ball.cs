@@ -10,11 +10,10 @@ using System.Threading.Tasks;
 
 namespace BreakoutStep1
 {
-    enum BallState { OnPaddleStart, Playing }
+    public enum BallState { OnPaddleStart, Playing }
 
-    class Ball : DrawableSprite
+    public class Ball : DrawableSprite
     {
-
         public BallState State { get; private set; }
 
         GameConsole console;
@@ -42,7 +41,7 @@ namespace BreakoutStep1
 
         public void LaunchBall(GameTime gameTime)
         {
-            this.Speed = 190;
+            this.Speed = 190; //Paddle Speed is slightly faster 
             this.Direction = new Vector2(1, -1);
             this.State = BallState.Playing;
             this.console.GameConsoleWrite("Ball Launched " + gameTime.TotalGameTime.ToString());
@@ -93,7 +92,7 @@ namespace BreakoutStep1
             if (this.Location.Y + this.spriteTexture.Height > this.Game.GraphicsDevice.Viewport.Height)
             {
                 this.Direction.Y *= -1;
-                console.GameConsoleWrite("Should lose life here!!!");
+                console.GameConsoleWrite("Lost a Life!!!");
             }
 
             //Top

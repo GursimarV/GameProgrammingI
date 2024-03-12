@@ -5,6 +5,7 @@ using MonoGameLibrary.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,6 +19,8 @@ namespace BreakoutStep1
         //Dependencies
         PaddleController controller;
         Ball ball;      //Need reference to ball for collision
+
+        Random r;
 
         public Paddle(Game game, Ball b)
             : base(game)
@@ -33,6 +36,8 @@ namespace BreakoutStep1
                 console = new GameConsole(this.Game);
                 this.Game.Components.Add(console);  //add a new game console to Game
             }
+
+            r = new Random();
         }
 
         protected override void LoadContent()
@@ -89,7 +94,40 @@ namespace BreakoutStep1
         private void UpdateCheckBallCollision()
         {
             //Ball Collsion
+            //Very simple collision with ball only uses rectangles
+            if (collisionRectangle.Intersects(ball.LocationRect))
+            {
+                //TODO Change angle based on location of collision or direction of paddle
+                ball.Direction.Y *= -1;
+                UpdateBallCollisionBasedOnPaddleImpactLocation();
+                UpdateBallCollisionRandomFuness();
+                console.GameConsoleWrite("Paddle collision ballLoc:" + ball.Location + " paddleLoc:" + this.Location.ToString());
+            }
         }
+
+        private void UpdateBallCollisionBasedOnPaddleImpactLocation()
+        {
+            if (this.Direction.X > 0)
+            {
+                ball.Direction.X += .2f;
+            }
+
+            if (this.Direction.Y > 0)
+            {
+                ball.Direction.Y -= .2f;
+            }
+        }
+
+        public void  UpdateBallCollisionRandomFuness()
+        {
+            ball.Direction.Y = ReturnBall();
+        }
+
+        private float ReturnBall() 
+        {
+            return -1 + ((r.Next(0, 3) - 1) * 0.2f);
+        }
+
 
         private void KeepPaddleOnScreen()
         {
