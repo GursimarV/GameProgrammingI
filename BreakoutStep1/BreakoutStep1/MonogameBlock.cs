@@ -43,6 +43,7 @@ namespace BreakoutStep1
                     this.spriteTexture = NormalTexture;
                     //this.enabled = false;
                     this.Visible = false; //don't show block
+                    ScoreManager.Score++;
                     break;
             }
         }
