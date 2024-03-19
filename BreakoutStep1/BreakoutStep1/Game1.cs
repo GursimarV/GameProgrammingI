@@ -17,7 +17,6 @@ namespace BreakoutStep1
         InputHandler inputHandler;
         GameConsole console;
 
-        MonogameBlock b;
         Ball ball;
         BlockManager blockManager;
         Paddle paddle;
@@ -29,6 +28,7 @@ namespace BreakoutStep1
             Content.RootDirectory = "Content";
 
             inputHandler = new InputHandler(this);
+            this.Components.Add(inputHandler);
             console = new GameConsole(this);
             this.Components.Add(console);
 
@@ -40,9 +40,6 @@ namespace BreakoutStep1
 
             paddle = new Paddle(this, ball);
             this.Components.Add(paddle);
-
-            b = new MonogameBlock(this);
-            this.Components.Add(b);
 
             blockManager = new BlockManager(this, ball);
             this.Components.Add(blockManager);
