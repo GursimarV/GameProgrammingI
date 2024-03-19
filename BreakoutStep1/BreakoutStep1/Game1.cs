@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Windows.Forms.Design.Behavior;
 
 namespace BreakoutStep1
 {
@@ -14,24 +15,25 @@ namespace BreakoutStep1
 
         MonogameBlock b;
         Ball ball;
-
+        BlockManager blockManager;
         Paddle paddle;
+        ScoreManager scoreManager;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            b = new MonogameBlock(this);
-            b.Location = new Vector2(400, 300);
-            this.Components.Add(b);
-
+            scoreManager = new ScoreManager(this);
             ball = new Ball(this);
-            this.Components.Add(ball);
-
             paddle = new Paddle(this, ball);
+            b = new MonogameBlock(this);
+
+            //b.Location = new Vector2(400, 300);
+            this.Components.Add(b);
+            this.Components.Add(ball);
             this.Components.Add(paddle);
-            
+            this.Components.Add(scoreManager);
         }
 
         /// <summary>
@@ -57,7 +59,7 @@ namespace BreakoutStep1
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
-            
+            base.LoadContent();
         }
 
         /// <summary>

@@ -18,6 +18,8 @@ namespace BreakoutStep1
 
         GameConsole console;
 
+        Random random;
+
         public Ball(Game game)
             : base(game)
         {
@@ -41,8 +43,10 @@ namespace BreakoutStep1
 
         public void LaunchBall(GameTime gameTime)
         {
+            random = new Random();
+            double randAngle = random.NextDouble() * MathHelper.TwoPi;
             this.Speed = 190; //Paddle Speed is slightly faster 
-            this.Direction = new Vector2(1, -1);
+            this.Direction.Y = -(float)Math.Sin(randAngle * 2);
             this.State = BallState.Playing;
             this.console.GameConsoleWrite("Ball Launched " + gameTime.TotalGameTime.ToString());
         }
@@ -54,7 +58,7 @@ namespace BreakoutStep1
             base.LoadContent();
         }
 
-        private void resetBall(GameTime gameTime)
+        public void resetBall(GameTime gameTime)
         {
             this.Speed = 0;
             this.State = BallState.OnPaddleStart;
@@ -91,6 +95,7 @@ namespace BreakoutStep1
             //bottom Miss
             if (this.Location.Y + this.spriteTexture.Height > this.Game.GraphicsDevice.Viewport.Height)
             {
+                ScoreManager.Lives--;
                 this.Direction.Y *= -1;
                 console.GameConsoleWrite("Lost a Life!!!");
             }
@@ -100,6 +105,12 @@ namespace BreakoutStep1
             {
                 this.Direction.Y *= -1;
             }
+        }
+
+        public void Reflect(MonogameBlock monoBlock)
+        {
+            this.Direction.Y *= -random.Next(1,2); //TODO check for side collision with block
+
         }
     }
 }

@@ -21,8 +21,7 @@ namespace BreakoutStep1
             set { this.block.BlockState = this.blockstate = value; }
         }
 
-        public MonogameBlock(Game game)
-        : base(game)
+        public MonogameBlock(Game game) : base(game)
         {
             this.block = new Block();
             NormalTextureName = "block_blue";

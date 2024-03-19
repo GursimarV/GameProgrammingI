@@ -46,6 +46,9 @@ namespace BreakoutStep1
                 case 2:
                     this.BlockState = BlockState.Broken;
                     break;
+                default:
+                    this.BlockState = BlockState.Broken;
+                    break;
             }
 
         }

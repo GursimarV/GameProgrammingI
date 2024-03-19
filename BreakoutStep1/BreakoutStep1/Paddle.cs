@@ -105,29 +105,49 @@ namespace BreakoutStep1
             }
         }
 
+        private void UpdateBallCollisionRandomFuness()
+        {
+            /// 
+            /// Adds a bit of entropy to bounce nothing should be perfect
+            /// 
+            /// 
+            ball.Direction.Y = GetReflectEntropy();
+        }
+
+        private float GetReflectEntropy()
+        {
+            return -1 + ((r.Next(0, 3) - 1) * 0.1f); //return -.9, -1 or -1.1
+        }
+
         private void UpdateBallCollisionBasedOnPaddleImpactLocation()
         {
+            //Change angle based on paddle movement
             if (this.Direction.X > 0)
             {
-                ball.Direction.X += .2f;
+                ball.Direction.X += .5f;
             }
-
-            if (this.Direction.Y > 0)
+            if (this.Direction.X < 0)
             {
-                ball.Direction.Y -= .2f;
+                ball.Direction.X -= .5f;
+            }
+            //Change anlge based on side of paddle
+            //First Third
+
+            if ((ball.Location.X > this.Location.X) && (ball.Location.X < this.Location.X + this.spriteTexture.Width / 3))
+            {
+                console.GameConsoleWrite("1st Third");
+                ball.Direction.X += .1f;
+            }
+            if ((ball.Location.X > this.Location.X + (this.spriteTexture.Width / 3)) && (ball.Location.X < this.Location.X + (this.spriteTexture.Width / 3) * 2))
+            {
+                console.GameConsoleWrite("2nd third");
+            }
+            if ((ball.Location.X > (this.Location.X + (this.spriteTexture.Width / 3) * 2)) && (ball.Location.X < this.Location.X + (this.spriteTexture.Width)))
+            {
+                console.GameConsoleWrite("3rd third");
+                ball.Direction.X -= .1f;
             }
         }
-
-        public void  UpdateBallCollisionRandomFuness()
-        {
-            ball.Direction.Y = ReturnBall();
-        }
-
-        private float ReturnBall() 
-        {
-            return -1 + ((r.Next(0, 3) - 1) * 0.2f);
-        }
-
 
         private void KeepPaddleOnScreen()
         {
