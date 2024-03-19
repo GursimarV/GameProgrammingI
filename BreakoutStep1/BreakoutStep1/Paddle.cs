@@ -20,7 +20,7 @@ namespace BreakoutStep1
         PaddleController controller;
         Ball ball;      //Need reference to ball for collision
 
-        Random r;
+        Random random;
 
         public Paddle(Game game, Ball b)
             : base(game)
@@ -37,7 +37,7 @@ namespace BreakoutStep1
                 this.Game.Components.Add(console);  //add a new game console to Game
             }
 
-            r = new Random();
+            random = new Random();
         }
 
         protected override void LoadContent()
@@ -84,6 +84,7 @@ namespace BreakoutStep1
             base.Update(gameTime);
         }
 
+
         private void UpdateMoveBallWithPaddle()
         {
             ball.Speed = 0;
@@ -110,13 +111,12 @@ namespace BreakoutStep1
             /// 
             /// Adds a bit of entropy to bounce nothing should be perfect
             /// 
-            /// 
             ball.Direction.Y = GetReflectEntropy();
         }
 
         private float GetReflectEntropy()
         {
-            return -1 + ((r.Next(0, 3) - 1) * 0.1f); //return -.9, -1 or -1.1
+            return -1 + ((random.Next(0, 3) - 1) * 0.1f); //return -.9, -1 or -1.1
         }
 
         private void UpdateBallCollisionBasedOnPaddleImpactLocation()

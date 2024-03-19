@@ -11,9 +11,8 @@ namespace BreakoutStep1
 {
     internal class BlockManager : DrawableGameComponent
     {
-        Ball balls;
-
         public List<MonogameBlock> Blocks { get; private set; }
+        Ball balls;
         List<MonogameBlock> BreakBlock;
 
         SpriteBatch spriteBatch;
@@ -27,7 +26,7 @@ namespace BreakoutStep1
             this.Blocks = new List<MonogameBlock>();
             this.BreakBlock = new List<MonogameBlock>();
             this.balls = ball;
-            ScoreManager.Level = 1;
+            //ScoreManager.Level = 1;
             isGameOver = false;
         }
 
@@ -107,23 +106,23 @@ namespace BreakoutStep1
 
         private void BlockCollideWithBall(GameTime gameTime)
         {
-            foreach(MonogameBlock block in Blocks)
+            foreach (MonogameBlock b in Blocks)
             {
-                if (block.Enabled)
+                if (b.Enabled) //Only chack active blocks
                 {
-                    block.Update(gameTime);
-
-                    if(block.Intersects(balls))
+                    b.Update(gameTime); //Update Block
+                    //Ball Collision
+                    if (b.Intersects(balls)) //chek rectagle collision between ball and current block 
                     {
-                        block.HitByBall(balls);
-                        if (block.BlockState == BlockState.Broken)
-                            BreakBlock.Add(block);
-                        if(!reflected) //only reflect once
+                        //hit
+                        b.HitByBall(balls);
+                        if (b.BlockState == BlockState.Broken)
+                            BreakBlock.Add(b);  //Ball is hit add it to remove list
+                        if (!reflected) //only reflect once
                         {
-                            balls.Reflect(block);
+                            balls.Reflect(b);
                             this.reflected = true;
                         }
-                        
                     }
                 }
             }
@@ -195,10 +194,8 @@ namespace BreakoutStep1
                 spriteBatch.DrawString(spriteFont, winloseText, new Vector2(Game.GraphicsDevice.Viewport.Width / 1.13f, Game.GraphicsDevice.Viewport.Height / 1.155f), Color.Red);
                 spriteBatch.DrawString(spriteFont, "Press F to continue", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.27f, Game.GraphicsDevice.Viewport.Height / 1.11f), Color.White);
             }
-            spriteBatch.DrawString(spriteFont, "Press G to slingshot the ball!", new Vector2(Game.GraphicsDevice.Viewport.Width / 80, Game.GraphicsDevice.Viewport.Height / 1.06f), Color.Magenta);
-            spriteBatch.DrawString(spriteFont, "Press Space to slow time!", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.4f, Game.GraphicsDevice.Viewport.Height / 1.06f), Color.Yellow);
-            spriteBatch.End();
 
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }

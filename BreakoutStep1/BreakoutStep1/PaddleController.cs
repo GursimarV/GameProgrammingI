@@ -12,7 +12,7 @@ namespace BreakoutStep1
     class PaddleController
     {
         InputHandler input;
-        Ball ball; //maybe should delegate to parent
+        Ball ball; //may should delgate to parent
         public Vector2 Direction { get; private set; }
 
         public PaddleController(Game game, Ball ball)
