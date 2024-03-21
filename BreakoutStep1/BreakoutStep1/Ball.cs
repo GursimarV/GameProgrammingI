@@ -94,6 +94,7 @@ namespace BreakoutStep1
             if (this.Location.Y + this.spriteTexture.Height > this.Game.GraphicsDevice.Viewport.Height)
             {
                 this.resetBall(gameTime);
+                ScoreManager.Lives--;
             }
 
             //Top

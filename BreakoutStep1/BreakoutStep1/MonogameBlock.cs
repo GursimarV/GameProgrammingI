@@ -17,8 +17,8 @@ namespace BreakoutStep1
         private BlockState blockstate;
         public BlockState BlockState
         {
-            get { return this.block.BlockState = this.blockstate; } //encapulsate block.BlockState
-            set { this.block.BlockState = this.blockstate = value; }
+            get { return this.block.BlockState; } //encapulsate block.BlockState
+            set { this.BlockState = block.BlockState; }
         }
 
         public MonogameBlock(Game game) : base(game)
