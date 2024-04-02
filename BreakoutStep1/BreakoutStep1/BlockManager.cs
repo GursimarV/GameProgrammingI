@@ -26,7 +26,7 @@ namespace BreakoutStep1
             this.Blocks = new List<MonogameBlock>();
             this.BreakBlock = new List<MonogameBlock>();
             this.balls = ball;
-            //ScoreManager.Level = 1;
+            ScoreManager.Level = 1;
             isGameOver = false;
         }
 
@@ -171,7 +171,7 @@ namespace BreakoutStep1
             {
                 ScoreManager.Score = 0;
                 ScoreManager.Level = 1;
-                ScoreManager.Lives = 5;
+                ScoreManager.Lives = 3;
                 LoadLevel();
                 isGameOver = false;
                 balls.resetBall(gameTime);
