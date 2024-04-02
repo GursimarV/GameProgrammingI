@@ -151,7 +151,7 @@ namespace BreakoutStep1
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Win!";
             isGameOver = true;
-            if (input.KeyboardState.IsKeyDown(Keys.F))
+            if (input.KeyboardState.IsKeyDown(Keys.G))
             {
                 ScoreManager.Level++;
                 ScoreManager.Lives = 3;
@@ -163,11 +163,10 @@ namespace BreakoutStep1
 
         private void LoseCondition(GameTime gameTime)
         {
-            ScoreManager.Lives = 0;
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Lost!!!";
             isGameOver = true;
-            if (input.KeyboardState.IsKeyDown(Keys.F))
+            if (input.KeyboardState.IsKeyDown(Keys.G))
             {
                 ScoreManager.Score = 0;
                 ScoreManager.Level = 1;
@@ -192,7 +191,7 @@ namespace BreakoutStep1
             if (isGameOver)
             {
                 spriteBatch.DrawString(spriteFont, winloseText, new Vector2(Game.GraphicsDevice.Viewport.Width / 1.13f, Game.GraphicsDevice.Viewport.Height / 1.155f), Color.Red);
-                spriteBatch.DrawString(spriteFont, "Press F to continue", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.27f, Game.GraphicsDevice.Viewport.Height / 1.11f), Color.White);
+                spriteBatch.DrawString(spriteFont, "Press G to continue", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.27f, Game.GraphicsDevice.Viewport.Height / 1.11f), Color.White);
             }
 
             spriteBatch.End();
