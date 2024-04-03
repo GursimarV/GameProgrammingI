@@ -9,6 +9,8 @@ using MonoGameLibrary.Util;
 
 namespace BreakoutStep1
 {
+    public enum GameState {Win, Playing, Lost}
+
     internal class BlockManager : DrawableGameComponent
     {
         public List<MonogameBlock> Blocks { get; private set; }
@@ -20,6 +22,7 @@ namespace BreakoutStep1
         string winloseText;
         public bool isGameOver;
 
+        GameState state;
 
         public BlockManager(Game game, Ball ball) : base(game)
         {
@@ -27,7 +30,8 @@ namespace BreakoutStep1
             this.BreakBlock = new List<MonogameBlock>();
             this.balls = ball;
             ScoreManager.Level = 1;
-            isGameOver = false;
+            //isGameOver = false;
+            state = GameState.Playing;
         }
 
         public override void Initialize()
@@ -43,7 +47,7 @@ namespace BreakoutStep1
         /// </summary>
         protected virtual void LoadLevel()
         {
-            CreateBlockArrayByWidthAndHeight(24, 2, 1);
+            CreateBlockArrayByWidthAndHeight(1, 2, 1);
         }
 
         /// <summary>
@@ -72,13 +76,24 @@ namespace BreakoutStep1
 
         public override void Update(GameTime gameTime)
         {
-            this.reflected = false;
-            BlockCollideWithBall(gameTime);
-            UpdateBlocks(gameTime);
-            RemoveBlocks();
-
-            if (!isGameOver)
-                IsWinOrLose(gameTime);
+            switch(state)
+            {
+                case GameState.Playing:
+                    this.reflected = false;
+                    BlockCollideWithBall(gameTime);
+                    UpdateBlocks(gameTime);
+                    RemoveBlocks();
+                    IsWinOrLose(gameTime);
+                    break;
+                case GameState.Win:
+                    WinCondition(gameTime);
+                    break;
+                case GameState.Lost:
+                    LoseCondition(gameTime);
+                    break;
+            }
+            //if (!isGameOver)
+            //    IsWinOrLose(gameTime);
 
             base.Update(gameTime);
         }
@@ -132,31 +147,28 @@ namespace BreakoutStep1
         {
             if(!Blocks.Any())
             {
-                WinCondition(gameTime);
+                state = GameState.Win;
             }
 
             else if(ScoreManager.Lives <= 0)
             {
-                LoseCondition(gameTime);
+                state = GameState.Lost;
             }
 
-            else
-            {
-                isGameOver = false;
-            }
         }
 
         private void WinCondition(GameTime gameTime)
         {
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Win!";
-            isGameOver = true;
+            //isGameOver = true;
             if (input.KeyboardState.IsKeyDown(Keys.G))
             {
                 ScoreManager.Level++;
                 ScoreManager.Lives = 3;
                 LoadLevel();
-                isGameOver = false;
+                //isGameOver = false;
+                state = GameState.Win;
                 balls.resetBall(gameTime);
             }
         }
@@ -165,14 +177,15 @@ namespace BreakoutStep1
         {
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Lost!!!";
-            isGameOver = true;
+            //isGameOver = true;
             if (input.KeyboardState.IsKeyDown(Keys.G))
             {
                 ScoreManager.Score = 0;
                 ScoreManager.Level = 1;
                 ScoreManager.Lives = 3;
                 LoadLevel();
-                isGameOver = false;
+                //isGameOver = false;
+                state = GameState.Lost;
                 balls.resetBall(gameTime);
             }
         }
@@ -188,7 +201,7 @@ namespace BreakoutStep1
 
             spriteBatch.Begin();
 
-            if (isGameOver)
+            if (this.state == GameState.Win || this.state == GameState.Lost)
             {
                 spriteBatch.DrawString(spriteFont, winloseText, new Vector2(Game.GraphicsDevice.Viewport.Width / 1.13f, Game.GraphicsDevice.Viewport.Height / 1.155f), Color.Red);
                 spriteBatch.DrawString(spriteFont, "Press G to continue", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.27f, Game.GraphicsDevice.Viewport.Height / 1.11f), Color.White);
