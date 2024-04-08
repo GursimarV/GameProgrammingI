@@ -11,7 +11,7 @@ namespace BreakoutStep1
             ScoreManager.Level = 2;
         }
 
-        protected override void LoadLevel()
+        public override void LoadLevel()
         {
             base.LoadLevel();
         }

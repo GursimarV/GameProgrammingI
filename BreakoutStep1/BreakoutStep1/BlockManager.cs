@@ -39,13 +39,14 @@ namespace BreakoutStep1
             LoadLevel();
             spriteBatch = new SpriteBatch(Game.GraphicsDevice);
             spriteFont = Game.Content.Load<SpriteFont>("Arial");
+            winloseText = string.Empty;
             base.Initialize();
         }
 
         /// <summary>
         /// Replacable Method to Load a Level by filling the Blocks List with Blocks
         /// </summary>
-        protected virtual void LoadLevel()
+        public virtual void LoadLevel()
         {
             CreateBlockArrayByWidthAndHeight(1, 2, 1);
         }
@@ -162,13 +163,13 @@ namespace BreakoutStep1
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Win!";
             //isGameOver = true;
-            if (input.KeyboardState.IsKeyDown(Keys.G))
+            if (input.KeyboardState.HasReleasedKey(Keys.G))
             {
                 ScoreManager.Level++;
                 ScoreManager.Lives = 3;
-                LoadLevel();
                 //isGameOver = false;
                 state = GameState.Win;
+                LoadLevel();
                 balls.resetBall(gameTime);
             }
         }
@@ -178,18 +179,17 @@ namespace BreakoutStep1
             InputHandler input = (InputHandler)this.Game.Services.GetService(typeof(IInputHandler));
             winloseText = "You Lost!!!";
             //isGameOver = true;
-            if (input.KeyboardState.IsKeyDown(Keys.G))
+            if (input.KeyboardState.HasReleasedKey(Keys.G))
             {
                 ScoreManager.Score = 0;
                 ScoreManager.Level = 1;
                 ScoreManager.Lives = 3;
-                LoadLevel();
                 //isGameOver = false;
                 state = GameState.Lost;
+                LoadLevel();
                 balls.resetBall(gameTime);
             }
         }
-
 
         public override void Draw(GameTime gameTime)
         {
@@ -205,6 +205,7 @@ namespace BreakoutStep1
             {
                 spriteBatch.DrawString(spriteFont, winloseText, new Vector2(Game.GraphicsDevice.Viewport.Width / 1.13f, Game.GraphicsDevice.Viewport.Height / 1.155f), Color.Red);
                 spriteBatch.DrawString(spriteFont, "Press G to continue", new Vector2(Game.GraphicsDevice.Viewport.Width / 1.27f, Game.GraphicsDevice.Viewport.Height / 1.11f), Color.White);
+
             }
 
             spriteBatch.End();
